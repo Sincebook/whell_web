@@ -36,5 +36,9 @@ module.exports = [
   {
     name: 'lottery',
     title: '轮盘抽奖',
-  }
+  },
+  {
+    name: 'share',
+    title: '分享',
+  },
 ];
