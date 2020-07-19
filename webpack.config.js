@@ -118,5 +118,4 @@ module.exports = {
     disableHostCheck: true,
     proxy: devProxy,
   }
-
 };
