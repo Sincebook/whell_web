@@ -17,7 +17,9 @@ export const addActivity = (title,details,awards) => {
   return post(host+'/activity/add', { title, details,awards});
 }
 
-
+export const dispalyActivity = (activitId) => {
+  return post(host+'/activity/activityInfo', { activitId});
+}
 
 export default class Award {
   constructor(name,probability){
