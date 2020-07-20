@@ -22,7 +22,7 @@ try {
 const outputPath = path.resolve(__dirname, 'build');
 
 
-function genHtmlWebpackPlugin(pages){
+function genHtmlWebpackPlugin(pages) {
   let ret = [];
   for (let page of pages) {
     const chunksname = page.name;
@@ -40,7 +40,7 @@ function genHtmlWebpackPlugin(pages){
   
 }
 
-function genEntry(pages){
+function genEntry(pages) {
   let ret = {};
   for (let page of pages) {
     const chunksname = page.name;
