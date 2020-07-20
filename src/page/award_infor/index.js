@@ -17,7 +17,6 @@ function notredeem() {
         let persion = data.data;
         let htmltext = '';
         for (let i = 0; i < persion.length; i++) {
-            console.log('************************************');
             console.log(persion[i]);
             htmltext = htmltext + renderGreenHtml(persion[i]);
         }
@@ -43,11 +42,9 @@ function redeem() {
 
 
 function duijiang(e) {
-  console.log('========================================');
   console.log(e.delegateTarget);
   let accountId = e.delegateTarget.dataset.no;
   if (accountId == undefined ) {
-    console.log('error');
     return;
   } else {
     console.log(accountId + '213213515');
