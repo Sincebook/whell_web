@@ -16,3 +16,6 @@ export default class Award {
     this.probability = probability;
   }
 };
+export const displayActivity = (activityId) => {
+  return post(host + '/activity/activityInfo', { activityId });
+}
