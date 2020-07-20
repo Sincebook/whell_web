@@ -7,26 +7,26 @@ let updateOrientation = function () {
 window.onorientationchange = updateOrientation;
 
 // 设置cookie
-function setCookie(cookiename, cookievalue, hours) {
-  let date = new Date();
-  date.setTime(date.getTime() + Number(hours) * 3600 * 1000);
-  document.cookie = cookiename + '=' + cookievalue + '; path=/;expires = ' + date.toGMTString();
-}
+// function setCookie(cookiename, cookievalue, hours) {
+//   let date = new Date();
+//   date.setTime(date.getTime() + Number(hours) * 3600 * 1000);
+//   document.cookie = cookiename + '=' + cookievalue + '; path=/;expires = ' + date.toGMTString();
+// }
 
-// 获取cookie
-function getCookie(cookiename) {
-  let preg = new RegExp('(^| )' + cookiename + '=([^;]*)(;|$)', 'g');
-  if (preg.test(document.cookie)) {
-    return RegExp.$2;
-  } else {
-    return '';
-  }
-}
+// // 获取cookie
+// function getCookie(cookiename) {
+//   let preg = new RegExp('(^| )' + cookiename + '=([^;]*)(;|$)', 'g');
+//   if (preg.test(document.cookie)) {
+//     return RegExp.$2;
+//   } else {
+//     return '';
+//   }
+// }
 
-// 清除cookie  
-function clearCookie(cookiename) {
-  setCookie(cookiename, '', -1);
-}
+// // 清除cookie  
+// function clearCookie(cookiename) {
+//   setCookie(cookiename, '', -1);
+// }
 
 // 随机数
 function rnd(n, m) {
@@ -55,12 +55,17 @@ function hideToast() {
   clearTimeout(toast_timer);
 }
 
+// 获取当前兑奖次数
+function getToalNum() {
+  return 1;
+}
+
 let $popover = $('.popover'),
   $lottery = $('#lotterys'),
   $go = $('#go'),
   $modal = $('.popover,.modal'),
   $lottery_num = $('#lottery_num'),
-  total_num = getCookie('LOTTERY_TOTAL_NUM') || 3;
+  total_num = getToalNum('LOTTERY_TOTAL_NUM') || 0;
 let canvas = document.getElementById('lotterys'),
   w = h = 300;
 let ctx = canvas.getContext('2d');
@@ -133,7 +138,6 @@ let rotateFn = function (item, angles, txt) {
     animateTo: angles + 1800,
     duration: 8000,
     callback: function () {
-      setCookie('LOTTERY_TOTAL_NUM', total_num, 24); // 记录剩余次数
       $modal.hide();
       drawLottery(item); // 中奖后改变背景颜色
       if (item == 3 || item == 7) {
@@ -159,15 +163,31 @@ function lottery() {
     $popover.show().find('.m3').show();
     total_num = 0;
   } else {
-    let angels = [247, 202, 157, 112, 67, 22, 337, 292]; // 对应角度
+    let angels = init_angels(_lottery.title.length); // 对应角度
     drawLottery();
-    item = rnd(0, 7);
-    rotateFn(item, angels[item], _lottery.title[item]);
+    let theNum = _lottery.title.length;
+    rotateFn(5, angels[5], _lottery.title[5]);
     total_num--;
   }
 }
+function init_angels(num) {
+
+  let theAngels = [];
+  const temple = 360 / num;
+  const temp = temple / 2;
+  theAngels[0] = 270 - temp;
+  for (let i = 0; i < num; i++) {
+    theAngels[i + 1] = theAngels[i] - temple; 
+  }
+  return theAngels;
+}
+// 转盘初始化
+  // 动态添加大转盘的奖品与奖品区域背景颜色
+  _lottery.title = ['0', '1', '2', '3', '4', '5'];
+  _lottery.colors = ['#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7711', '#fe807d', '#fe7711'];
 
 // 抽奖机会次数
+
 function changeNum(num) {
   $lottery_num.text(num);
 }
@@ -200,9 +220,6 @@ $(function () {
   // 初始化抽奖次数
   changeNum(total_num);
 
-  // 动态添加大转盘的奖品与奖品区域背景颜色
-  _lottery.title = ['奖品一', '奖品二', '奖品三', '谢谢参与', '奖品四', '奖品五'];
-  _lottery.colors = ['#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7771'];
 
   // go 点击事件
   $go.click(function () {

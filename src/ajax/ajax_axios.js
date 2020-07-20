@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { ajaxDebugger } from '~/util/debug';
 import message from 'antd/lib/message';
+import 'antd/dist/antd.css';
 import { host } from './config';
 
 /**
  * 用来生成一个不重复的自增值
  */
-const getAjaxId = (function () {
+const getAjaxId = ( function () {
   let id = 0;
   return () => id++;
 })() 
@@ -64,7 +65,7 @@ function ajax(method, url, params, errMsg = '网络或服务器异常，请重�
  */
 function isGlobalErrCode(code) {
   // TODO 这里还需要补全一下
-  return (code == 11 ) ? true : false;
+  return (code == 500 ) ? true : false;
 }
 export { ajax };
 export const get = (url, params, errMsg) => {
