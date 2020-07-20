@@ -1,13 +1,9 @@
 module.exports = {
     success:'0',
-    MEMOS_OBJ_IS_NULL: '700_001',
-    MEMOS_MESSAGE_IS_NULL: '700_002',
-    MEMOS_GET_IS_NULL: '700_003',
-    BOOK_NOT_FIND: '800_401',
-    Book_NOT_ENOUGH: '800_402',
-    USER_NOT_FOUND: '801_402', // 没有查到这本书
-    LIST_OPENID_NOT_FOUND: '900_401', // 查找为空
-    LIST_ID_NOT_FOUND: '900_402', // 发货失败
-    LIST_BOOK_NUM_NO: '900_403', // 库存不足
-    OPEN_ID_NOT_SAME: '801_403'// openid不匹配
+    ACTIVITY_IS_RUNNING: '500_401', // status=1 活动正在执行
+    ACTIVITY_IS_OUTDATED:  '500_402', // "活动已经失效");//status=2 活动失效
+    ACTIVITYID_EXCEPTION: '500_403', // "参数异常");
+    ACTIVITY_EXCEPTION: '500_407', // "此活动与商家活动不匹配");
+    ACTIVITY_INSERT_FAIL: '500_404', // "插入失败");
+    ACTIVITY_NOT_FIND: '500_405', // "活动不存在");
 };
