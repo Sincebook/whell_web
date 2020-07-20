@@ -13,7 +13,6 @@ document.getElementById('close').addEventListener('click', endActivity, false);
 
 
 function endActivity() {
-    console.log('进入方法');
     finishActivity().then((data) => {
         if (data.data == 2) {
             window.alert('关闭成功');
