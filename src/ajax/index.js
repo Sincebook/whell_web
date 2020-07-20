@@ -17,4 +17,4 @@ export const getUser = (userName, info) => {
   return get('./user', { userName, info } );
 }
 let a = new Award();
-addActivity('标题','123',[new Award('一等',5),new Award('二等',6)]);
+addActivity('标题', '123', [new Award('一等', 5), new Award('二等', 6)]);
