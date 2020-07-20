@@ -25,43 +25,27 @@
     <div id="slider" class="mui-slider">
       <div id="sliderSegmentedControl"
         class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-        <a class="mui-control-item" href="#item1mobile">
+        <a id="notredeem" class="mui-control-item mui-active">
           未兑奖
         </a>
-        <a class="mui-control-item" href="#item2mobile">
+        <a id="redeem" class="mui-control-item">
           已兑奖
         </a>
       </div>
-      <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+      <div id="sliderProgressBar" class=" mui-col-xs-6"></div>
       <div class="mui-slider-group">
         <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
           <div id="scroll1" class="mui-scroll-wrapper">
             <div class="mui-scroll">
-              <ul class="mui-table-view" style="">
-                <li class="mui-table-view-cell mui-media">
-                  <a href="javascript:;">
-                    <img class="mui-media-object mui-pull-left"
-                      src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI3T3ljicuzurPrty5Hm1NxrNibnl2I2QKXeXL8dTJw4gNCykrhoBicbhicJxfr11ImtLPXpa6cPSOSdw/132">
-                    <div class="mui-media-body">
-                      啤酒*10<b class="mui-pull-right" style="font-size: 20px;">1 j f b</b><small
-                        class="mui-pull-right">兑奖码：</small>
-                      <p class='mui-ellipsis'>微信昵称：叶倾城<br></p>
-                      <button class="mui-pull-right mui-btn-green">立即兑奖</button>
-                    </div>
-                  </a>
-                </li>
-                <li class="mui-table-view-cell mui-media">
-                  <a href="javascript:;">
-                    <img class="mui-media-object mui-pull-left"
-                      src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI3T3ljicuzurPrty5Hm1NxrNibnl2I2QKXeXL8dTJw4gNCykrhoBicbhicJxfr11ImtLPXpa6cPSOSdw/132">
-                    <div class="mui-media-body">
-                      啤酒*10<b class="mui-pull-right" style="font-size: 20px;">1 j f b</b><small
-                        class="mui-pull-right">兑奖码：</small>
-                      <p class='mui-ellipsis'>微信昵称：叶倾城<br></p>
-                      <button class="mui-pull-right mui-btn-green">立即兑奖</button>
-                    </div>
-                  </a>
-                </li>
+              <ul id="display" class="mui-table-view" >
+
+
+        
+
+
+
+
+
               </ul>
               <br><br><br><br><br>
             </div>
@@ -101,40 +85,6 @@
     </ul>
   </div>
   <script src="../../../public/js/mui.min.js"></script>
-  <script>
-    //var height = document.getElementById("item3mobile").scrollHeight;
-    //alert(height);
-    mui.init({
-      swipeBack: false
-    });
-    (function ($) {
-      $('.mui-scroll-wrapper').scroll({
-        indicators: true //是否显示滚动条
-      });
-      var html2 =
-        '<ul class="mui-table-view" style=""><li class="mui-table-view-cell mui-media"><a href="javascript:;"><img class="mui-media-object mui-pull-left" src="http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI3T3ljicuzurPrty5Hm1NxrNibnl2I2QKXeXL8dTJw4gNCykrhoBicbhicJxfr11ImtLPXpa6cPSOSdw/132"><div class="mui-media-body">啤酒*10<b class="mui-pull-right" style="font-size: 20px;">1 j f b</b><small class="mui-pull-right">兑奖码：</small><p class="mui-ellipsis">微信昵称：叶倾城<br></p><button class="mui-pull-right mui-btn-red">已兑奖</button></div></a></li></ul>';
-      var item2 = document.getElementById('item2mobile');
-      document.getElementById('slider').addEventListener('slide', function (e) {
-        if (e.detail.slideNumber === 1) {
-          if (item2.querySelector('.mui-loading')) {
-            setTimeout(function () {
-              item2.querySelector('.mui-scroll').innerHTML = html2;
-            }, 500);
-          }
-        } else if (e.detail.slideNumber === 2) {}
-      });
-      var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-      $('.mui-input-group').on('change', 'input', function () {
-        if (this.checked) {
-          sliderSegmentedControl.className =
-            'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' +
-            this.value;
-          //force repaint
-          sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-        }
-      });
-    })(mui);
-  </script>
 </body>
 
 </html>
