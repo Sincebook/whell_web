@@ -1,3 +1,28 @@
+import { displayActivity } from '~/ajax/activity';
+import codes from '~/config/codeConfig'
+// 活动数据渲染
+const a = displayActivity(9).then((data) => {
+  let _data;
+  if (data.code == codes.success) {
+   _data = data.data.awards;
+    showData(_data);
+    drawLottery();
+    return data.data.awards;
+  } else if (data.code == codes.ACTIVITY_NOT_FIND) {
+    alert('活动有误！'); 
+  }
+}); 
+
+function showData(_data) {
+  console.log(_data);
+  for (let i in _data) {
+    _lottery.title[i] = _data[i].name;
+  }
+ // _lottery.title = ['0', '1', '2', '3', '4', '5'];
+  _lottery.colors = ['#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7711', '#fe807d', '#fe7711'];
+  
+}
+
 // 横竖屏
 let updateOrientation = function () {
   if (window.orientation == '-90' || window.orientation == '90') {
@@ -6,27 +31,6 @@ let updateOrientation = function () {
 };
 window.onorientationchange = updateOrientation;
 
-// 设置cookie
-// function setCookie(cookiename, cookievalue, hours) {
-//   let date = new Date();
-//   date.setTime(date.getTime() + Number(hours) * 3600 * 1000);
-//   document.cookie = cookiename + '=' + cookievalue + '; path=/;expires = ' + date.toGMTString();
-// }
-
-// // 获取cookie
-// function getCookie(cookiename) {
-//   let preg = new RegExp('(^| )' + cookiename + '=([^;]*)(;|$)', 'g');
-//   if (preg.test(document.cookie)) {
-//     return RegExp.$2;
-//   } else {
-//     return '';
-//   }
-// }
-
-// // 清除cookie  
-// function clearCookie(cookiename) {
-//   setCookie(cookiename, '', -1);
-// }
 
 // 随机数
 function rnd(n, m) {
@@ -66,8 +70,8 @@ let $popover = $('.popover'),
   $modal = $('.popover,.modal'),
   $lottery_num = $('#lottery_num'),
   total_num = getToalNum('LOTTERY_TOTAL_NUM') || 0;
-let canvas = document.getElementById('lotterys'),
-  w = h = 300;
+let canvas = document.getElementById('lotterys');
+
 let ctx = canvas.getContext('2d');
 let _lottery = {
   title: [], // 奖品名称
@@ -80,12 +84,10 @@ let _lottery = {
   isLock: false // false:停止; ture:旋转
 };
 
-window.onload = function () {
-  drawLottery();
-}
-
 // 画出转盘
 function drawLottery(lottery_index) {
+  let w = 300;
+  let h = 300;
   if (canvas.getContext) {
     let arc = Math.PI / (_lottery.title.length / 2); // 根据奖品个数计算圆周角度
     ctx.clearRect(0, 0, w, h); // 在给定矩形内清空一个矩形
@@ -114,7 +116,6 @@ function drawLottery(lottery_index) {
         ctx.fill();
       }
       ctx.fillStyle = '#fff';
-
       let text = _lottery.title[i],
         line_height = 17,
         x, y;
@@ -155,7 +156,7 @@ let rotateFn = function (item, angles, txt) {
 // 开始抽奖
 function lottery() {
   if (_lottery.isLock) {
-    showToast('心急吃不了热豆腐哦');
+    showToast('不要反复点击哦！');
     return;
   }
   $modal.hide();
@@ -166,10 +167,11 @@ function lottery() {
     let angels = init_angels(_lottery.title.length); // 对应角度
     drawLottery();
     let theNum = _lottery.title.length;
-    rotateFn(5, angels[5], _lottery.title[5]);
+    rotateFn(1, angels[1], _lottery.title[1]);
     total_num--;
   }
 }
+// 角度规格化
 function init_angels(num) {
 
   let theAngels = [];
@@ -183,9 +185,7 @@ function init_angels(num) {
 }
 // 转盘初始化
   // 动态添加大转盘的奖品与奖品区域背景颜色
-  _lottery.title = ['0', '1', '2', '3', '4', '5'];
-  _lottery.colors = ['#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7771', '#fe807d', '#fe7711', '#fe807d', '#fe7711'];
-
+  
 // 抽奖机会次数
 
 function changeNum(num) {
@@ -213,7 +213,7 @@ function close_popover() {
 }
 
 $(function () {
-
+  console.log();
   // 初始化我的抽奖记录
   record_log();
 
@@ -258,3 +258,4 @@ $(function () {
     close_popover();
   });
 });
+
