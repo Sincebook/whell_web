@@ -1,5 +1,7 @@
 import { post } from '~/ajax/ajax_axios';
-import { host } from '~/ajax/config';
+import { host, dev_host } from '~/ajax/config';
+
+
 /**
  * @param title
  * @param details
@@ -8,8 +10,9 @@ import { host } from '~/ajax/config';
  * @example
  */
 export const addActivity = (title, details, awards) => {
-  return post(host + '/activity/add', { title, details, awards });
+  return post(host + '/activity/testSave', { title, details, awards });
 }
+
 export default class Award {
   constructor(name, probability) {
     this.name = name;
