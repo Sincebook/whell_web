@@ -3,7 +3,6 @@ import { host, dev_host } from '~/ajax/config';
 
 
 /**
- *
  * @param title
  * @param details
  * @param  {Award[] }  awards

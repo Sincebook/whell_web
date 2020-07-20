@@ -3,7 +3,7 @@ import {
   post,
   ajax,
 } from './ajax_axios';
-import Award, {addActivity} from "~/ajax/activity";
+import Award, { addActivity } from '~/ajax/activity';
 
 export const getIndex = (userName, password) => {
     return get('http://localhost:8081//page/index/index.html', { userName, password } );
