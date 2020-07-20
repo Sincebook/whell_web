@@ -93,7 +93,7 @@ module.exports = {
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'page/[name]/[name].css',
-    }),  //打包后的文件名
+    }), // 打包后的文件名
     ...htmlWebpackPlugin,
     new CleanWebpackPlugin(),
     new CopyPlugin({
@@ -118,4 +118,4 @@ module.exports = {
     disableHostCheck: true,
     proxy: devProxy,
   }
-};
+}
