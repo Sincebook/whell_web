@@ -5,7 +5,7 @@ export default (pushItem) =>
     <div class="mui-media-body">
     ${pushItem.awardName}<b class="mui-pull-right" style="font-size: 20px;">${pushItem.awardCode}</b><small class="mui-pull-right">兑奖码：</small>
     <br><br> 
-      <button class="mui-pull-right mui-btn-red" id="inerEvent">已兑奖</button>
+      <button class="mui-pull-right mui-btn-red" >已兑奖</button>
     </div>
   </a>
 </li>`;

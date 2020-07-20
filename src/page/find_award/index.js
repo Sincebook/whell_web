@@ -2,12 +2,13 @@ import { getAllAccountAwards, duiduijiang } from '~/ajax/find_award';
 import renderRedHtml from './template/redHtmlTemplate';
 import renderGreenHtml from './template/greenHtmlTemplate';
 import { AWARD_STATUS_NOT } from '~/config/codeConfig';
-import { delegate } from '~/util/element';
+import { delegate } from '~/util/elemnet';
 
 let activityId = 1;
 getAllAccountAwards(activityId).then((data) => {
     if (data.code == 0 ) {
         showAllAccountAwards(data);
+        console.log(data);
       } else {
         console.log('error', data);
         return;
@@ -31,18 +32,18 @@ function showAllAccountAwards(data) {
     document.getElementById('showList').innerHTML = htm;
   }
 
-  const attachEvent = document.getElementById('showList');
-delegate(attachEvent, '#inerEvent', 'click', duijiang, false);
+  const attachEvent = document.getElementById('attachEvent');
+ delegate(attachEvent, '#inerEvent', 'click', duijiang, false);
 
 function duijiang(e) {
   console.log(e.delegateTarget);
-  let no = e.delegateTarget.dataset.no;
-  if (no == undefined ) {
+  let accountId = e.delegateTarget.dataset.no;
+  if (accountId == undefined ) {
     console.log('error');
     return;
   } else {
-  console.log(no);
-  duiduijiang(no).then((data) => {
+    console.log(accountId + '213213515');
+  duiduijiang(accountId, 1).then((data) => {
     if (data.code == 0) {
       location.reload();
     }

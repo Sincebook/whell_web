@@ -6,6 +6,6 @@ export const getAllAccountAwards = ( activityId ) => {
   }
 
 
-  export const duiduijiang = (no) => {
-    return get(host + '/shops/redeem', { no } );
+  export const duiduijiang = (userId, activityId) => {
+    return get(host + '/shops/redeem', { userId, activityId } );
 }
