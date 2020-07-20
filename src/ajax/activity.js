@@ -1,4 +1,4 @@
-import { post } from '~/ajax/ajax_axios';
+import { get, post } from '~/ajax/ajax_axios';
 import { host, dev_host } from '~/ajax/config';
 
 
@@ -19,6 +19,13 @@ export default class Award {
     this.probability = probability;
   }
 };
-export const displayActivity = (activityId) => {
-  return post(host + '/activity/activityInfo', { activityId });
+
+export const displayActivity = (id) => {
+  return get(host + '/activity/activityInfo', { id });
+}
+export const getAmountPeople = (activityId) => {
+  return get(host + '/shops/findaccounts', { activityId });
+}
+export const finishActivity = () => {
+  return get(host + '/shops/finish');
 }
