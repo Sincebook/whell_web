@@ -9,11 +9,18 @@ import { host, dev_host } from '~/ajax/config';
  * @example
  */
 export const addActivity = (title, details, awards) => {
-  return post(host + '/activity/testSave', { title, details, awards });
+  return post(host + '/activity/addActivity', { title, details, awards });
 }
 
-export const displayActivity = (id) => {
-  return get(host + '/activity/activityInfo', { id });
+export default class Award {
+  constructor(name, probability) {
+    this.name = name;
+    this.probability = probability;
+  }
+};
+
+export const displayActivity = (activityId) => {
+  return get(host + '/activity/activityInfo', { activityId });
 }
 export const getAmountPeople = (activityId) => {
   return get(host + '/shops/findaccounts', { activityId });
