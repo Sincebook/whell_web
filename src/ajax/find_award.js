@@ -9,3 +9,7 @@ export const getAllAccountAwards = ( activityId ) => {
   export const duiduijiang = (userId, activityId) => {
     return get(host + '/shops/redeem', { userId, activityId } );
 }
+
+export const search = ( awardCode ) => {
+  return get(host + '/shops/check', { awardCode } );
+}

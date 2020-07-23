@@ -1,7 +1,6 @@
 import { get, post } from '~/ajax/ajax_axios';
 import { host, dev_host } from '~/ajax/config';
 
-
 /**
  * @param title
  * @param details
@@ -29,3 +28,10 @@ export const getAmountPeople = (activityId) => {
 export const finishActivity = () => {
   return get(host + '/shops/finish');
 }
+
+export default class Award {
+  constructor(name, probability) {
+    this.name = name;
+    this.probability = probability;
+  }
+};
