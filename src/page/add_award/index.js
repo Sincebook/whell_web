@@ -17,7 +17,9 @@ createActivityEvent.addEventListener('click', function () {
     total_pro = 0;
     return;
   }
-  // console.log(awardList);
+  getAwardName();
+  getProbality();
+  console.log(awardList);
   // addActivity(title, details, awardList).then((data) => {
   //   if (data.code == codes.success) {
   //     toShare();
