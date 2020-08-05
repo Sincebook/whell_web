@@ -1,6 +1,6 @@
 const host = '';
 
-export const addAwardUrl = host + '/to/add_award';
+export const addAwardUrl = host + '/to/addAward';
 export const toAddAward = () => {
   window.location.href = addAwardUrl;
 };
