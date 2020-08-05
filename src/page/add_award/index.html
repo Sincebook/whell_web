@@ -23,7 +23,7 @@
     <a class="mui-icon mui-icon-plusempty mui-pull-right"></a>
   </header>
   <div class="mui-content" id="contentList">
-    
+
     <div class="mui-card">
       <div class="mui-input-group">
         <div class="mui-input-row">
@@ -32,8 +32,8 @@
           <span class="mui-icon mui-action-back">a</span>
         </div>
         <div class="mui-input-row">
-          <label>中奖概率</label>
-          <input class="mui-input-numbox" type="number" maxlength="2" value="10" />
+          <label>中奖概率(%)</label>
+          <input class="mui-input-numbox" id="proElem" type="number" maxlength="2" value="10" />
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
           <input type="text" placeholder="请输入奖品名称" class="awardName">
         </div>
         <div class="mui-input-row">
-          <label>中奖概率</label>
+          <label>中奖概率(%)</label>
           <input class="mui-input-numbox" value="20" maxlength="2" type="number" />
         </div>
       </div>
@@ -58,7 +58,7 @@
           <input type="text" placeholder="请输入奖品名称" class="awardName">
         </div>
         <div class="mui-input-row">
-          <label>中奖概率</label>
+          <label>中奖概率(%)</label>
           <input class="mui-input-numbox" type="number" maxlength="2" value="30" />
         </div>
       </div>
@@ -71,15 +71,15 @@
           <input type="text" placeholder="请输入奖品名称" class="awardName">
         </div>
         <div class="mui-input-row">
-          <label>中奖概率</label>
+          <label>中奖概率(%)</label>
           <input class="mui-input-numbox" type="number" maxlength="2" value="40" />
-          <button class="mui-btn-red del_btn">删除</button>
+          <button class="mui-btn-red del_btn" id="delBtn">删除</button>
         </div>
       </div>
     </div>
 
   </div>
-  <div style="text-align: center;"> 当前剩余概率： <b id='probability'>80</b> %</div>
+  <div style="text-align: center;"> 当前剩余概率： <b id='probability'>0</b> %</div>
   <br><br><br>
   <nav class="mui-bar mui-bar-tab">
     <a class="mui-tab-item " id="add_award" style="color: blue;" href="#">
