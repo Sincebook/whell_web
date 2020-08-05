@@ -17,17 +17,29 @@ createActivityEvent.addEventListener('click', function () {
     total_pro = 0;
     return;
   }
-  getAwardName();
-  getProbality();
+  const awardName = getAwardName();
+  if (awardName == false) {
+    return;
+  }
+  const probality = getProbality();
+  for (let i in awardName) {
+    let award = new Award(awardName[i], probality[i]);
+    awardList[i] = award;   
+  }
+  console.log('到这里了');
   console.log(awardList);
-  // addActivity(title, details, awardList).then((data) => {
-  //   if (data.code == codes.success) {
-  //     toShare();
-  //     localStorage.setItem('_shareUrl', data.data);
-  //   } else {
-  //     mui.alert('服务器异常');
-  //   }
-  // });
+  addActivity(title, details, awardList).then((data) => {
+    if (data.code == codes.success) {
+      toShare();
+      localStorage.setItem('_shareUrl', data.data);
+    } else if (data.code == codes.ACTIVITYID_EXCEPTION) {
+      mui.alert(data.errMsg);
+    } else if (data.code == codes.ACTIVITY_INSERT_FAIL) {
+      mui.alert(data.errMsg);
+    } else {
+      mui.alert('未知错误！');
+    }
+  });
 });
 // 获取当前概率
 function getProbality() {
@@ -59,9 +71,11 @@ function getAwardName() {
         names[i] = temple;
       } else {
         mui.alert('奖品名称不能为空');
+        return false;
       }
     }
   }
+  return names;
 }
 // 删除奖品
 delegate(contentList, '#delBtn', 'click', delAward, false);
