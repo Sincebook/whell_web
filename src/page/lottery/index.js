@@ -1,5 +1,6 @@
 import { displayActivity } from '~/ajax/activity';
-import codes from '~/config/codeConfig'
+import codes from '~/config/codeConfig';
+import { drawPrize } from '~/ajax/lottery';
 // 活动数据渲染
 const a = displayActivity(9).then((data) => {
   let _data;
@@ -166,9 +167,29 @@ function lottery() {
   } else {
     let angels = init_angels(_lottery.title.length); // 对应角度
     drawLottery();
-    let theNum = _lottery.title.length;
-    rotateFn(1, angels[1], _lottery.title[1]);
-    total_num--;
+    drawPrize().then((data) => {
+      if (data.code == codes.success) {
+        const awardName = data.data.awardName;
+        const awardCode = data.data.awardCode;
+        for (let i in _lottery.title) {
+          if (_lottery.title[i] == awardName) {
+            rotateFn(i, angels[i], _lottery.title[i]);
+            document.getElementById('receives_btn').innerHTML = awardCode;
+            total_num--;
+          } else if (data.code == codes.AWARD_UNKNOW_EXCEPTION) {
+            mui.alert(data.errMsg);
+          } else if (data.code == codes.GET_AWARD_REPEAT) {
+            mui.alert(data.errMsg);
+          } else if (data.code == codes.GET_AWARD_FAIL) {
+            mui.alert(data.errMsg);
+          } else if (data.code == codes.REDEEM_FAIL) {
+            mui.alert(data.errMsg);
+          } else {
+            mui.alert('未知错误！');
+          }
+        }
+      }
+    });
   }
 }
 // 角度规格化

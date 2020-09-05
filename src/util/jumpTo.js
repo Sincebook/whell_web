@@ -1,4 +1,4 @@
-const host = '';
+import { host } from '~/ajax/config';
 
 export const addAwardUrl = host + '/to/addAward';
 export const toAddAward = () => {
