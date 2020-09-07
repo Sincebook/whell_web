@@ -1,11 +1,10 @@
 import { displayActivity, getAmountPeople, finishActivity } from '~/ajax/activity';
-localStorage.setItem('activityId', 8 );
+// localStorage.setItem('activityId', 8 );
 const id = localStorage.getItem('activityId');
 displayActivity(id).then((data) => {
     document.getElementById('name').setAttribute('value', data.data.title);
     document.getElementById('age').setAttribute('value', data.data.details);
-
-})
+});
 getAmountPeople(id).then((data) => {
     document.getElementById('tel').setAttribute('value', data.data);
 })

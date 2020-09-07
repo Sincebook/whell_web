@@ -4,13 +4,30 @@ import renderGreenHtml from './template/greenHtmlTemplate';
 import { AWARD_STATUS_NOT } from '~/config/codeConfig';
 import { delegate } from '~/util/elemnet';
 
-let activityId = 1;
+// let activityId = 1;
 
+function GetRequest() {
+  let url = location.search; // 获取url中"?"符后的字串
+  console.log(url);
+  let theRequest = new Object();
+  if (url.indexOf('?') != -1) {
+    let str = url.substr(1);
+    let strs = str.split('&');
+    for (let i = 0; i < strs.length; i++) {
+      theRequest[strs[i].split('=')[0]] = (strs[i].split('=')[1]);
+    }
+  }
+  return theRequest;
+}
+let Request = new Object();
+Request = GetRequest();
+let activityId = Request['activityId'];
+localStorage.setItem('activityId', activityId);
 const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', function () {
 let searchinput = document.getElementById('searchInput').value;
 console.log(searchinput);
-let searchResult = search(searchinput)
+let searchResult = search(searchinput);
 let result = searchResult;
 console.log(result);
 let ht = `

@@ -2,6 +2,7 @@ import Award, { addActivity } from '~/ajax/activity';
 import codes from '~/config/codeConfig'
 const createActivityEvent = document.getElementById('sendNow');
 import { delegate } from '~/util/elemnet';
+import { toShare } from '~/util/jumpTo';
 // 初始化奖品及概率
 let awardList = new Array();
 let total_pro = 0;
