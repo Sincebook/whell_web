@@ -49,10 +49,10 @@ function getProbality() {
     let temple = probabilityList[i].value;
     if (temple != undefined) {
       if (temple != '') {
-        if (parseInt(temple) >= 0 && parseInt(temple) < 99) {
+        if (parseInt(temple) >= 0 && parseInt(temple) < 101) {
           probality[i] = temple;
         } else {
-          mui.alert('概率在0~99%之间');
+          mui.alert('概率数值有误！', '警告');
           return;
         }
       } 
@@ -85,18 +85,16 @@ function delAward(e) {
   updataPro();
 }
 // 监听输入框
-delegate(contentList, '.mui-input-numbox', 'keydown', inputNum, false);
+delegate(contentList, '.mui-input-numbox', 'keyup', inputNum, false);
 function inputNum() {
-  console.log('监听到输入');
-  let id = parseInt(Math.random() * 5000);
-  setTimeout(updataPro(id), 100);
+  updataPro();
 }
 // 更新当前概率
 const proElment = document.getElementById('probability');
 function updataPro(id) {
   console.log(id);
   total_pro = 0;
-  const temple = getProbality();
+  let temple = getProbality();
   for (let i in temple) {
     total_pro = total_pro + parseInt(temple[i]);
   }
