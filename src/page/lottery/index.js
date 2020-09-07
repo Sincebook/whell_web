@@ -1,6 +1,6 @@
 import { displayActivity } from '~/ajax/activity';
 import codes from '~/config/codeConfig';
-import { drawPrize } from '~/ajax/lottery';
+import { drawPrize, checkNum } from '~/ajax/lottery';
 // 活动数据渲染
 function GetRequest() {
   let url = location.search; // 获取url中"?"符后的字串
@@ -78,6 +78,14 @@ function hideToast() {
 
 // 获取当前兑奖次数
 function getToalNum() {
+  checkNum(activityId).then((data) => {
+    if (data.code == codes.success) {
+      return 1;
+    } else if (data.code == codes.GET_AWARD_REPEAT) {
+      showToast(data.errMsg);
+      return 0;
+    }
+  });
   return 1;
 }
 

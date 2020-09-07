@@ -19,11 +19,11 @@ export default class Award {
   }
 };
 
-export const displayActivity = (activityId) => {
-  return get(host + '/activity/activityInfo', { activityId });
+export const displayActivity = () => {
+  return get(host + '/activity/activityInfo', {});
 }
-export const getAmountPeople = (activityId) => {
-  return get(host + '/shops/findaccounts', { activityId });
+export const getAmountPeople = () => {
+  return get(host + '/shops/findaccounts', {});
 }
 export const finishActivity = () => {
   return get(host + '/shops/finish');
