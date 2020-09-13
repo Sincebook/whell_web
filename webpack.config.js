@@ -22,7 +22,7 @@ try {
 const outputPath = path.resolve(__dirname, 'build');
 
 
-function genHtmlWebpackPlugin(pages){
+function genHtmlWebpackPlugin(pages) {
   let ret = [];
   for (let page of pages) {
     const chunksname = page.name;
@@ -40,7 +40,7 @@ function genHtmlWebpackPlugin(pages){
   
 }
 
-function genEntry(pages){
+function genEntry(pages) {
   let ret = {};
   for (let page of pages) {
     const chunksname = page.name;
@@ -93,7 +93,7 @@ module.exports = {
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'page/[name]/[name].css',
-    }),  //打包后的文件名
+    }), // 打包后的文件名
     ...htmlWebpackPlugin,
     new CleanWebpackPlugin(),
     new CopyPlugin({
@@ -118,4 +118,4 @@ module.exports = {
     disableHostCheck: true,
     proxy: devProxy,
   }
-};
+}
